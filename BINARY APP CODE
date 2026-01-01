@@ -1,0 +1,238 @@
+"""
+Binary X - Text to Binary Converter
+A PyQt5 desktop application that converts text to binary and vice versa
+"""
+
+import sys
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
+                             QHBoxLayout, QPushButton, QTextEdit, QLabel)
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QFont, QClipboard
+
+# Color and style definitions
+BACKGROUND_COLOR = "#1a1a1a"
+WIDGET_BG_COLOR = "#2a2a2a"
+TEXT_COLOR = "#ffffff"
+PLACEHOLDER_COLOR = "#666666"
+BUTTON_COLOR = "#0d7dff"
+BUTTON_HOVER_COLOR = "#1e8fff"
+BORDER_COLOR = "#3a3a3a"
+
+
+class BinaryXConverter(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.init_ui()
+        
+    def init_ui(self):
+        """Initialize the user interface"""
+        self.setWindowTitle("Binary X")
+        self.setMinimumSize(400, 600)
+        self.resize(400, 650)
+        
+        # Set window background
+        self.setStyleSheet(f"QMainWindow {{ background-color: {BACKGROUND_COLOR}; }}")
+        
+        # Create central widget and main layout
+        central_widget = QWidget()
+        self.setCentralWidget(central_widget)
+        main_layout = QVBoxLayout(central_widget)
+        main_layout.setContentsMargins(15, 20, 15, 20)
+        main_layout.setSpacing(15)
+        
+        # Title Label
+        title_label = QLabel("BINARY X")
+        title_label.setAlignment(Qt.AlignCenter)
+        title_label.setStyleSheet(f"""
+            QLabel {{
+                color: {TEXT_COLOR};
+                font-size: 24px;
+                font-weight: bold;
+                letter-spacing: 2px;
+                padding: 10px;
+            }}
+        """)
+        main_layout.addWidget(title_label)
+        
+        # Top text input area (for text input)
+        self.text_input = QTextEdit()
+        self.text_input.setPlaceholderText("Enter Text...")
+        self.text_input.setStyleSheet(self.get_textedit_style())
+        self.text_input.setFont(QFont("Arial", 11))
+        main_layout.addWidget(self.text_input, stretch=2)
+        
+        # SWAP button
+        swap_button = QPushButton("SWAP")
+        swap_button.setStyleSheet(self.get_button_style())
+        swap_button.setFixedHeight(45)
+        swap_button.setCursor(Qt.PointingHandCursor)
+        swap_button.clicked.connect(self.swap_content)
+        main_layout.addWidget(swap_button)
+        
+        # Bottom text area (for binary output)
+        self.binary_output = QTextEdit()
+        self.binary_output.setPlaceholderText("Enter Binary...")
+        self.binary_output.setStyleSheet(self.get_textedit_style())
+        self.binary_output.setFont(QFont("Courier New", 10))
+        main_layout.addWidget(self.binary_output, stretch=2)
+        
+        # Bottom buttons layout
+        button_layout = QHBoxLayout()
+        button_layout.setSpacing(10)
+        
+        # RESET button
+        reset_button = QPushButton("RESET")
+        reset_button.setStyleSheet(self.get_button_style())
+        reset_button.setFixedHeight(45)
+        reset_button.setCursor(Qt.PointingHandCursor)
+        reset_button.clicked.connect(self.reset_fields)
+        button_layout.addWidget(reset_button)
+        
+        # COPY button
+        copy_button = QPushButton("COPY")
+        copy_button.setStyleSheet(self.get_button_style())
+        copy_button.setFixedHeight(45)
+        copy_button.setCursor(Qt.PointingHandCursor)
+        copy_button.clicked.connect(self.copy_output)
+        button_layout.addWidget(copy_button)
+        
+        main_layout.addLayout(button_layout)
+        
+        # Set initial focus
+        self.text_input.setFocus()
+        
+    def get_textedit_style(self):
+        """Return the stylesheet for text edit widgets"""
+        return f"""
+            QTextEdit {{
+                background-color: {WIDGET_BG_COLOR};
+                color: {TEXT_COLOR};
+                border: 1px solid {BORDER_COLOR};
+                border-radius: 10px;
+                padding: 15px;
+                font-size: 12px;
+            }}
+            QTextEdit:focus {{
+                border: 1px solid {BUTTON_COLOR};
+            }}
+        """
+    
+    def get_button_style(self):
+        """Return the stylesheet for buttons"""
+        return f"""
+            QPushButton {{
+                background-color: {BUTTON_COLOR};
+                color: {TEXT_COLOR};
+                border: none;
+                border-radius: 8px;
+                font-size: 13px;
+                font-weight: bold;
+                letter-spacing: 1px;
+                padding: 10px;
+            }}
+            QPushButton:hover {{
+                background-color: {BUTTON_HOVER_COLOR};
+            }}
+            QPushButton:pressed {{
+                background-color: #0a6edf;
+            }}
+        """
+    
+    def text_to_binary(self, text):
+        """Convert text to binary representation (8-bit ASCII)"""
+        if not text:
+            return ""
+        
+        binary_list = []
+        for char in text:
+            # Convert character to 8-bit binary
+            binary = format(ord(char), '08b')
+            binary_list.append(binary)
+        
+        # Join with spaces for readability
+        return ' '.join(binary_list)
+    
+    def binary_to_text(self, binary_string):
+        """Convert binary string back to text"""
+        if not binary_string:
+            return ""
+        
+        try:
+            # Remove extra whitespace and split by spaces
+            binary_list = binary_string.split()
+            
+            text_list = []
+            for binary in binary_list:
+                # Remove any non-binary characters
+                binary = ''.join(c for c in binary if c in '01')
+                
+                if len(binary) == 8:
+                    # Convert 8-bit binary to character
+                    char = chr(int(binary, 2))
+                    text_list.append(char)
+            
+            return ''.join(text_list)
+        except Exception as e:
+            return f"Error: Invalid binary format"
+    
+    def swap_content(self):
+        """Convert text to binary or binary to text based on which field has content"""
+        text_content = self.text_input.toPlainText().strip()
+        binary_content = self.binary_output.toPlainText().strip()
+        
+        if text_content and not binary_content:
+            # Convert text to binary
+            binary_result = self.text_to_binary(text_content)
+            self.binary_output.setPlainText(binary_result)
+            
+        elif binary_content and not text_content:
+            # Convert binary to text
+            text_result = self.binary_to_text(binary_content)
+            self.text_input.setPlainText(text_result)
+            
+        elif text_content and binary_content:
+            # Both fields have content - swap them
+            self.text_input.setPlainText(binary_content)
+            self.binary_output.setPlainText(text_content)
+            
+        else:
+            # Both fields are empty - show message in binary field
+            self.binary_output.setPlainText("Please enter text in the top field to convert to binary.")
+    
+    def reset_fields(self):
+        """Clear both input and output fields"""
+        self.text_input.clear()
+        self.binary_output.clear()
+        self.text_input.setFocus()
+    
+    def copy_output(self):
+        """Copy the binary output to clipboard"""
+        binary_content = self.binary_output.toPlainText().strip()
+        
+        if binary_content:
+            clipboard = QApplication.clipboard()
+            clipboard.setText(binary_content)
+            # Briefly show feedback (optional - could add status bar)
+            self.binary_output.selectAll()
+            QApplication.processEvents()
+            # Deselect after a moment
+            cursor = self.binary_output.textCursor()
+            cursor.clearSelection()
+            self.binary_output.setTextCursor(cursor)
+        else:
+            self.binary_output.setPlaceholderText("Nothing to copy...")
+
+
+def main():
+    """Main application entry point"""
+    app = QApplication(sys.argv)
+    app.setStyle('Fusion')  # Use Fusion style for consistent look across platforms
+    
+    window = BinaryXConverter()
+    window.show()
+    
+    sys.exit(app.exec_())
+
+
+if __name__ == '__main__':
+    main()
