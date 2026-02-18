@@ -3,7 +3,7 @@
 **Binary X** is a sleek, modern, and lightweight desktop application built with **Python** and **PyQt5**. It allows users to effortlessly convert plain text into 8-bit binary code and vice versa with a dark-themed, user-friendly interface.
 
 <p align="center">
-  <img src="./screenshots/banner.png" alt="Binary X Banner" width="800">
+  <img src="project4.jpg" alt="Binary X Banner" width="800">
 </p>
 
 ---
