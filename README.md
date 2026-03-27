@@ -1,80 +1,45 @@
-<div align="center">
-
-# ○● BINARY-APP
-
-**A clean, lightweight binary number converter built with Python.**
-
-[![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
-[![License](https://img.shields.io/badge/License-MIT-22c55e?style=flat-square)](LICENSE)
-[![Author](https://img.shields.io/badge/Author-Hafiz%20Abdul%20Rafay-f59e0b?style=flat-square)](https://github.com/mebdulrafay)
-
-</div>
-
+---
+agent: 'agent'
+description: 'Create a comprehensive README.md file for the project'
 ---
 
-## Overview
+## Role
 
-BINARY-APP is a minimalistic command-line tool that converts numbers between binary and other numeral systems. No fluff — just fast, accurate conversions.
+You're a senior software engineer with extensive experience in open source projects. You create appealing, informative, and easy-to-read README files.
 
----
+## Task
 
-## Features
+1. Review the entire project workspace and codebase
+2. Create a comprehensive README.md file with these essential sections:
+   - **What the project does**: Clear project title and description
+   - **Why the project is useful**: Key features and benefits
+   - **How users can get started**: Installation/setup instructions with usage examples
+   - **Where users can get help**: Support resources and documentation links
+   - **Who maintains and contributes**: Maintainer information and contribution guidelines
 
-- 🔢 **Decimal ↔ Binary** conversion
-- ⚡ **Lightweight** — zero external dependencies
-- 🖥️ **CLI-based** — runs anywhere Python does
-- 🧼 **Clean output** — readable and well-formatted results
+## Guidelines
 
----
+### Content and Structure
 
-## Installation & Usage
+- Focus only on information necessary for developers to get started using and contributing to the project
+- Use clear, concise language and keep it scannable with good headings
+- Include relevant code examples and usage snippets
+- Add badges for build status, version, license if appropriate
+- Keep content under 500 KiB (GitHub truncates beyond this)
 
-**1. Clone the repository**
+### Technical Requirements
 
-```bash
-git clone https://github.com/mebdulrafay/BINARY-APP.git
-cd BINARY-APP
-```
+- Use GitHub Flavored Markdown
+- Use relative links (e.g., `docs/CONTRIBUTING.md`) instead of absolute URLs for files within the repository
+- Ensure all links work when the repository is cloned
+- Use proper heading structure to enable GitHub's auto-generated table of contents
 
-**2. Run the app**
+### What NOT to include
 
-```bash
-python main.py
-```
+Don't include:
+- Detailed API documentation (link to separate docs instead)
+- Extensive troubleshooting guides (use wikis or separate documentation)
+- License text (reference separate LICENSE file)
+- Detailed contribution guidelines (reference separate CONTRIBUTING.md file)
 
-**3. Follow the prompts**
-
-```
-Enter a number to convert: 42
-Binary: 101010
-```
-
-> **Requirements:** Python 3.x — no additional packages needed.
-
----
-
-## Contributing
-
-Contributions are welcome and appreciated.
-
-```bash
-# 1. Fork the repo
-# 2. Create your feature branch
-git checkout -b feature/your-feature
-
-# 3. Commit your changes
-git commit -m "Add: your feature description"
-
-# 4. Push and open a Pull Request
-git push origin feature/your-feature
-```
-
-Please keep code clean and consistent with the existing style.
-
----
-
-<div align="center">
-
-Made with ♥ by **[Hafiz Abdul Rafay](https://github.com/mebdulrafay)**
-
-</div>
+Analyze the project structure, dependencies, and code to make the README accurate, helpful, and focused on getting users productive quickly.
