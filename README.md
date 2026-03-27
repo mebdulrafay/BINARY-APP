@@ -1,56 +1,80 @@
-# ⚡ Binary X - Text to Binary Converter
+<div align="center">
 
-**Binary X** is a sleek, modern, and lightweight desktop application built with **Python** and **PyQt5**. It allows users to effortlessly convert plain text into 8-bit binary code and vice versa with a dark-themed, user-friendly interface.
+# ○● BINARY-APP
 
-<p align="center">
-  <img src="project4.jpg" alt="Binary X Banner" width="800">
-</p>
+**A clean, lightweight binary number converter built with Python.**
 
----
+[![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![License](https://img.shields.io/badge/License-MIT-22c55e?style=flat-square)](LICENSE)
+[![Author](https://img.shields.io/badge/Author-Hafiz%20Abdul%20Rafay-f59e0b?style=flat-square)](https://github.com/mebdulrafay)
 
-## ✨ Features
-
-* **Bi-directional Conversion:** Convert Text ↔ Binary with a single click.
-* **Smart Swap:** Intelligently detects which field has content to perform the correct conversion.
-* **Modern Dark UI:** A custom-styled dark interface designed for eye comfort.
-* **Clipboard Integration:** One-click 'COPY' functionality to quickly use your results.
-* **Cross-Platform:** Works on Windows, macOS, and Linux thanks to the Fusion style engine.
+</div>
 
 ---
 
-## 📸 Interface Preview
+## Overview
 
-<p align="center">
-  <img src="./screenshots/app_main.png" alt="Binary X Main Interface" width="600">
-  <br>
-  <i>Main application window showing the dark theme and dual-text area.</i>
-</p>
-
-
+BINARY-APP is a minimalistic command-line tool that converts numbers between binary and other numeral systems. No fluff — just fast, accurate conversions.
 
 ---
 
-## Built With
+## Features
 
-* **Python 3.x** - The core programming language.
-* **PyQt5** - Used for creating the professional Graphical User Interface (GUI).
-* **ASCII/UTF-8 Encoding** - For precise 8-bit binary representation.
+- 🔢 **Decimal ↔ Binary** conversion
+- ⚡ **Lightweight** — zero external dependencies
+- 🖥️ **CLI-based** — runs anywhere Python does
+- 🧼 **Clean output** — readable and well-formatted results
 
 ---
 
-##  How to Run
+## Installation & Usage
 
-### 1. Prerequisites
-Make sure you have Python installed. You will also need the `PyQt5` library. If you don't have it, install it via pip:
-## Execution
-python binary_x.py
-## Project Structure
-├── binary_x.py        # Main source code
-├── README.md          # Documentation
-└── screenshots/       # Folder for images
-    ├── banner.png     # Header image
-    └── app_main.png   # Screenshot of the app
-    
+**1. Clone the repository**
 
 ```bash
-pip install PyQt5
+git clone https://github.com/mebdulrafay/BINARY-APP.git
+cd BINARY-APP
+```
+
+**2. Run the app**
+
+```bash
+python main.py
+```
+
+**3. Follow the prompts**
+
+```
+Enter a number to convert: 42
+Binary: 101010
+```
+
+> **Requirements:** Python 3.x — no additional packages needed.
+
+---
+
+## Contributing
+
+Contributions are welcome and appreciated.
+
+```bash
+# 1. Fork the repo
+# 2. Create your feature branch
+git checkout -b feature/your-feature
+
+# 3. Commit your changes
+git commit -m "Add: your feature description"
+
+# 4. Push and open a Pull Request
+git push origin feature/your-feature
+```
+
+Please keep code clean and consistent with the existing style.
+
+---
+
+<div align="center">
+
+Made with ♥ by **[Hafiz Abdul Rafay](https://github.com/mebdulrafay)**
+
+</div>
